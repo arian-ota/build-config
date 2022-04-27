@@ -10,6 +10,6 @@ if [[ ! -f /home/arian/.remote_mac.txt ]]; then
 fi
 
 wakeonlan $(cat /home/arian/.remote_mac.txt)
-sleep 120
+sleep 60
 ssh arian@home.local 'bash -s' < build.sh
 
