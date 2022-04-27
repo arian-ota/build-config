@@ -5,10 +5,20 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+if [[ ! -f /home/arian/.remote_mac.txt ]]; then
+    return 1
+fi
+
+wakeonlan $(cat /home/arian/.remote_mac.txt)
+
+#sleep 60
+
+ssh arian@home.local <<-'ENDSSH'
+
 DEVICES="davinci"
 PROJECTS="lineage-19.1"
 VARIANTS="vanilla gms"
-WORKING_DIR="~/old_hdd"
+WORKING_DIR="/home/arian/old_hdd"
 
 if [[ ! -d ${WORKING_DIR} ]]; then
     mkdir -p ${WORKING_DIR}
@@ -25,6 +35,9 @@ for project in ${PROJECTS}; do
     repo init -u https://github.com/LineageOS/android.git -b lineage-19.1
 
     # Setup build script
+    if [[ -d tools/buildscript ]]; then
+        rm -rf tools/buildscript
+    fi
     git clone git@github.com:ArianK16a/android_tools_buildscript.git tools/buildscript -b main
     ### TEMPORARY ####
     export DEBUG_BUILD=1
@@ -36,10 +49,12 @@ for project in ${PROJECTS}; do
             rm -rf .repo/local_manifests
         fi
         mkdir .repo/local_manifests
-        wget https://raw.githubusercontent.com/arian-ota/build-config/main/manifests/${project}/${device}/roomservice.xml
+        wget https://raw.githubusercontent.com/arian-ota/build-config/main/manifests/${project}/${device}/roomservice.xml -O .repo/local_manifests/
         repo sync --detach --no-clone-bundle --fail-fast --current-branch --force-sync --force-remove-dirty
         for variant in ${VARIANTS}; do
             build ${device} ${variant}
         done
     done
 done
+
+ENDSSH
