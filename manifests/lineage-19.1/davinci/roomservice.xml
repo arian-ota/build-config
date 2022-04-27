@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Remote to sync from github -->
+  <remote fetch="ssh://git@gitlab.com" name="gitlab" revision="lineage-19.1" />
+
+  <!-- The davinci and xiaomi sm6150-common device trees -->
+  <project name="xiaomi-sm6150/android_device_xiaomi_davinci" path="device/xiaomi/davinci" />
+  <project name="xiaomi-sm6150/android_device_xiaomi_sm6150-common" path="device/xiaomi/sm6150-common" />
+
+  <!-- The xiaomi sm6150 kernel -->
+  <project name="ArianK16a/android_kernel_xiaomi_sm6150" path="kernel/xiaomi/sm6150" />
+
+  <!-- The vendor repository containing proprietary files required for davinci and xiaomi sm6150-common -->
+  <project name="xiaomi-sm6150/android_vendor_xiaomi" path="vendor/xiaomi" />
+
+  <!-- The xiaomi common repository including some common interfaces and HALs -->
+  <project name="LineageOS/android_hardware_xiaomi" path="hardware/xiaomi/" />
+
+  <!-- Translations for davinci-specific strings -->
+  <project name="ArianK16a/android_vendor_extra" path="vendor/translations/" revision="translations" />
+
+  <!-- Repository containing proprietary GMS files, needs to be included explicitly -->
+  <project name="ArianK16a/android_vendor_gms" path="vendor/gms/" remote="gitlab" />
+</manifest>
