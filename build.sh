@@ -11,7 +11,7 @@ fi
 
 wakeonlan $(cat /home/arian/.remote_mac.txt)
 
-#sleep 60
+sleep 60
 
 ssh arian@home.local <<-'ENDSSH'
 
