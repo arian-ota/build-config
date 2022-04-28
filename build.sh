@@ -49,7 +49,7 @@ for project in ${PROJECTS}; do
             rm -rf .repo/local_manifests
         fi
         mkdir .repo/local_manifests
-        wget https://raw.githubusercontent.com/arian-ota/build-config/main/manifests/${project}/${device}/roomservice.xml -O .repo/local_manifests/
+        wget https://raw.githubusercontent.com/arian-ota/build-config/main/manifests/${project}/${device}/roomservice.xml -P .repo/local_manifests/
         repo sync --detach --no-clone-bundle --fail-fast --current-branch --force-sync --force-remove-dirty
         for variant in ${VARIANTS}; do
             build ${device} ${variant}
