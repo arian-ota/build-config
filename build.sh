@@ -53,6 +53,7 @@ for project in ${PROJECTS}; do
         repo sync --detach --no-clone-bundle --fail-fast --current-branch --force-sync --force-remove-dirty
         for variant in ${VARIANTS}; do
             build ${device} ${variant}
+            release ${device} ${variant}
         done
     done
 done
