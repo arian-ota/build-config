@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- Remote to sync from github -->
+  <!-- Remote to sync from gitlab -->
   <remote fetch="ssh://git@gitlab.com" name="gitlab" revision="lineage-19.1" />
 
   <!-- The davinci and xiaomi sm6150-common device trees -->
